@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sorteio de Nomes</title>
+</head>
+
+<body>
+    <h1>Sorteio de Nomes</h1>
+
+    <input type="text" id="nomeInput" placeholder="Digite um nome">
+    <button onclick="adicionarNome()">Adicionar Nome</button>
+
+    <h2>Nomes Adicionados:</h2>
+    <ul id="nomesLista"></ul>
+
+    <button onclick="realizarSorteio()">Realizar Sorteio</button>
+    <h2>Nome Sorteado:</h2>
+    <p id="nomeSorteado"></p>
+
+    <button onclick="limpar()">Limpar</button>
+
+    <script>
+        const nomes = [];
+
+        function adicionarNome() {
+            const nomeInput = document.getElementById("nomeInput");
+            const nome = nomeInput.value;
+
+            if (nome) {
+                nomes.push(nome);
+                nomeInput.value = "";
+
+                const nomesLista = document.getElementById("nomesLista");
+                const li = document.createElement("li");
+                li.appendChild(document.createTextNode(nome));
+                nomesLista.appendChild(li);
+            }
+        }
+
+        function realizarSorteio() {
+            if (nomes.length === 0) {
+                alert("Adicione pelo menos um nome antes de realizar o sorteio.");
+                return;
+            }
+
+            const numeroAleatorio = Math.floor(Math.random() * nomes.length);
+            const nomeSorteado = nomes[numeroAleatorio];
+
+            const nomeSorteadoElement = document.getElementById("nomeSorteado");
+            nomeSorteadoElement.textContent = nomeSorteado;
+        }
+
+        function limpar() {
+            const nomesLista = document.getElementById("nomesLista");
+            const nomeSorteadoElement  = document.getElementById    ("nomeSorteado");
+ 
+            nomes.length = 0;
+            nomesLista.innerHTML = "";
+            nomeSorteadoElement.textContent = "";
+        }
+    </script>
+</body>
+
+</html>
